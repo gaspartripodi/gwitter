@@ -2,12 +2,20 @@
   <h1 class="top-bar-title">{{ title }}</h1>
   <nav class="main-navigation">
     <ul class="nav-list">
-      <li class="nav-list-item"><a class="nav-list-button" [routerLink]="['/']"
-          routerLinkActive="active-nav-list-button" [routerLinkActiveOptions]="{ exact: true }"><i
-            class="nav-list-item-icon material-icons">home</i></a></li>
-      <li class="nav-list-item"><a class="nav-list-button"><i class="nav-list-item-icon material-icons">search</i></a>
+      <li class="nav-list-item">
+        <a class="nav-list-button" [routerLink]="['/']" routerLinkActive="active-nav-list-button" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="nav-list-item-icon material-icons">home</i>
+        </a>
       </li>
-      <li class="nav-list-item"><a class="nav-list-button"><i class="nav-list-item-icon material-icons">settings</i></a>
+      <li class="nav-list-item">
+        <a class="nav-list-button" [routerLink]="['/search']" routerLinkActive="active-nav-list-button" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="nav-list-item-icon material-icons">search</i>
+        </a>
+      </li>
+      <li class="nav-list-item">
+        <a class="nav-list-button" [routerLink]="['/configuration']" routerLinkActive="active-nav-list-button" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="nav-list-item-icon material-icons">settings</i>
+        </a>
       </li>
     </ul>
   </nav>

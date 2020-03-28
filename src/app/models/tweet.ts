@@ -1,6 +1,6 @@
 export interface ITweet {
   created_at: Date;
-  id?: number;
+  id: boolean;
   text: string;
   user: {
     name: string;
