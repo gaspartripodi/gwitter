@@ -1,34 +1,29 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { faRetweet, faHeart, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import { ITweet } from '../../models/tweet';
 import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service';
+
+import { TOTAL_TWEETS, TWEETS_PER_PAGE, SHOW_SCROLL_HEIGHT, HIDE_SCROLL_HEIGHT } from '../../constants/constants';
 
 @Component({
   selector: 'app-tweet-list',
   templateUrl: './tweet-list.component.html',
   styleUrls: ['./tweet-list.component.css']
 })
-export class TweetListComponent implements OnInit {
+export class TweetListComponent {
 
   tweets: ITweet[] = [];
   displayedTweets: ITweet[] = [];
   faRetweet = faRetweet;
   faHeart = faHeart;
   faAngleUp = faAngleUp;
-  private totalTweets: number = 100;
   private actualTweets: number;
-  private tweetsPerPage: number = 25;
   showGoUpButton: boolean;
-  showScrollHeight: number = 400;
-  hideScrollHeight: number = 200;
 
   constructor(private apiTwitterService: ApiTwitterService) {
-    this.showGoUpButton = false;
-  }
-
-  ngOnInit(): void {
     this.getTimeline();
+    this.showGoUpButton = false;
   }
 
   getTimeline(): void {
@@ -36,19 +31,19 @@ export class TweetListComponent implements OnInit {
       .subscribe(tweets => {
         this.actualTweets = 25;
         this.tweets = tweets;
-        this.displayedTweets = tweets.slice(0, this.tweetsPerPage - 1);
+        this.displayedTweets = tweets.slice(0, TWEETS_PER_PAGE - 1);
       });
   }
 
   onScroll() {
-    if (this.actualTweets < this.totalTweets) {
+    if (this.actualTweets < TOTAL_TWEETS) {
       this.getMoreTweets();
-      this.actualTweets = this.actualTweets + this.tweetsPerPage;
+      this.actualTweets = this.actualTweets + TWEETS_PER_PAGE;
     }
   }
 
   getMoreTweets() {
-    let array = this.tweets.slice(this.actualTweets, (this.actualTweets + this.tweetsPerPage) - 1);
+    let array = this.tweets.slice(this.actualTweets, (this.actualTweets + TWEETS_PER_PAGE) - 1);
     this.displayedTweets = this.displayedTweets.concat(array);
   }
 
@@ -61,13 +56,13 @@ export class TweetListComponent implements OnInit {
   onWindowScroll() {
     if ((window.pageYOffset ||
       document.documentElement.scrollTop ||
-      document.body.scrollTop) > this.showScrollHeight) {
+      document.body.scrollTop) > SHOW_SCROLL_HEIGHT) {
       this.showGoUpButton = true;
     } else if (this.showGoUpButton &&
       (window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop)
-      < this.hideScrollHeight) {
+      < HIDE_SCROLL_HEIGHT) {
       this.showGoUpButton = false;
     }
   }

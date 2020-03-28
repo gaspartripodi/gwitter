@@ -7,7 +7,7 @@
             <span class="tweet-name">
               <strong>{{tweet.user.name}}</strong>
             </span>
-            <img class="tweet-verified" *ngIf="tweet.user.verified" src="assets/twitter-verified-badge.svg" alt="">
+            <img class="tweet-verified" *ngIf="tweet.user.verified" src="assets/images/twitter-verified-badge.svg" alt="">
             <span class="tweet-username"> @{{tweet.user.screen_name}}</span>
             <span class="tweet-date"> · {{tweet.created_at | amTimeAgo}}</span>
           </div>
