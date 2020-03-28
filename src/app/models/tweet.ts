@@ -5,6 +5,7 @@ export interface ITweet {
   user: {
     name: string;
     screen_name: string;
+    verified: boolean;
     profile_image_url: string;
   };
   retweet_count: number;
