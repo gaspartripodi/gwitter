@@ -1,10 +1,11 @@
 export interface ITweet {
   created_at: Date;
-  id?: number;
+  id: boolean;
   text: string;
   user: {
     name: string;
     screen_name: string;
+    verified: boolean;
     profile_image_url: string;
   };
   retweet_count: number;

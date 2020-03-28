@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Da+2|Quicksand&display=swap');
+
+.config-header {
+  margin-top: 5px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.157);
+  text-align: center;
+  padding: 25px;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.212);
+}
+
+.config-title {
+  padding: 16px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+  color: rgb(96, 101, 105);
+  margin: 0 auto;
+}
