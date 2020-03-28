@@ -7,12 +7,16 @@ import { MomentModule } from 'ngx-moment';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { TrendsComponent } from './trends/trends.component';
+
+import { ApiTwitterService } from './services/apitwitter/apitwitter.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    TopBarComponent
+    TopBarComponent,
+    TrendsComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +24,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     HttpClientModule,
     MomentModule
   ],
-  providers: [],
+  providers: [ApiTwitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
