@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApitwitterService } from './apitwitter.service';
+import { ApiTwitterService } from './apitwitter.service';
 
 describe('ApitwitterService', () => {
-  let service: ApitwitterService;
+  let service: ApiTwitterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApitwitterService);
+    service = TestBed.inject(ApiTwitterService);
   });
 
   it('should be created', () => {

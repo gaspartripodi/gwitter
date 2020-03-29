@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { ITweet } from '../../models/tweet';
+import { ISearch } from '../../models/search';
 
 @Injectable({ providedIn: 'root' })
 export class ApiTwitterService {
@@ -31,23 +32,11 @@ export class ApiTwitterService {
       );
   }
 
-  //Get only one specific tweet (code needs to be adapted)
-  getMovie(id: number): Observable<ITweet> {
-    const url = `${this.url}/${id}`;
-    return this.http.get<ITweet>(url).pipe(
-      catchError(this.handleError<ITweet>(`getMovie id=${id}`))
-    );
+  //Search tweets (code needs to be adapted)
+  searchTweets(term: string): Observable<ISearch> {
+    return this.http.get<ISearch>(`${this.url}/search/?q=${term}&count=100`);
   }
 
-  //Search tweets (code needs to be adapted)
-  searchMovies(term: string): Observable<ITweet[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<ITweet[]>(`${this.url}/?title=${term}`).pipe(
-      catchError(this.handleError<ITweet[]>('searchMovies', []))
-    );
-  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
