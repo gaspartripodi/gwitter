@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ConfigurationComponent } from './components/configuration/configuration
     FooterComponent,
     TopBarComponent,
     TweetListComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
