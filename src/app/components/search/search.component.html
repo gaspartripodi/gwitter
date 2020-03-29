@@ -1,42 +1,43 @@
 <div class="search-container">
-    <input #term type="text" (keyup.enter)="searchedTerm(term.value)" class="search-input" placeholder="Search...">
-    <button type="button" (click)="searchedTerm(term.value)" class="search-button">Search</button>
+  <input #term type="text" (keyup.enter)="searchedTerm(term.value)" class="search-input" placeholder="Search...">
+  <button type="button" (click)="searchedTerm(term.value)" class="search-button">Search</button>
 </div>
 <hr>
 <section infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
-    <ol class="tweet-list">
-        <li class="tweet-card" *ngFor="let tweet of displayedTweets">
-            <a class="tweet-link" routerLink="/detail/{{tweet.id}}">
-                <div class="tweet-content">
-                    <div class="tweet-header">
-                        <span class="tweet-name">
-                <strong>{{tweet.user.name}}</strong>
-              </span>
-                        <img class="tweet-verified" *ngIf="tweet.user.verified" src="assets/images/twitter-verified-badge.svg" alt="">
-                        <span class="tweet-username"> @{{tweet.user.screen_name}}</span>
-                        <span class="tweet-date"> · {{tweet.created_at | amTimeAgo}}</span>
-                    </div>
-                    <img class="tweet-card-avatar" [src]="tweet.user.profile_image_url" alt="">
-                    <div class="tweet-text">
-                        <p class="" lang="es">
-                            {{tweet.text}}
-                        </p>
-                    </div>
-                    <div class="tweet-footer">
-                        <a class="tweet-footer-item">
-                            <fa-icon class="tweet-footer-item-icon" [icon]="faRetweet"></fa-icon><span class="tweet-footer-item-icon">
-                  {{tweet.retweet_count}}</span>
-                        </a>
-                        <a class="tweet-footer-item">
-                            <fa-icon class="tweet-footer-item-icon" [icon]="faHeart"></fa-icon><span class="tweet-footer-item-icon">
-                  {{tweet.favorite_count}}</span>
-                        </a>
-                    </div>
-                </div>
+  <ol class="tweet-list">
+    <li class="tweet-card" *ngFor="let tweet of displayedTweets">
+      <a class="tweet-link" routerLink="/detail/{{tweet.id}}">
+        <div class="tweet-content">
+          <div class="tweet-header">
+            <span class="tweet-name">
+              <strong>{{tweet.user.name}}</strong>
+            </span>
+            <img class="tweet-verified" *ngIf="tweet.user.verified" src="assets/images/twitter-verified-badge.svg"
+              alt="">
+            <span class="tweet-username"> @{{tweet.user.screen_name}}</span>
+            <span class="tweet-date"> · {{tweet.created_at | amTimeAgo}}</span>
+          </div>
+          <img class="tweet-card-avatar" [src]="tweet.user.profile_image_url" alt="">
+          <div class="tweet-text">
+            <p class="" lang="es">
+              {{tweet.text}}
+            </p>
+          </div>
+          <div class="tweet-footer">
+            <a class="tweet-footer-item">
+              <fa-icon class="tweet-footer-item-icon" [icon]="faRetweet"></fa-icon><span class="tweet-footer-item-icon">
+                {{tweet.retweet_count}}</span>
             </a>
-        </li>
-    </ol>
-    <button class="go-up-button" *ngIf="showGoUpButton" (click)="scrollTop()">
-      <fa-icon class="go-up-button-icon" [icon]="faAngleUp"></fa-icon>
-    </button>
+            <a class="tweet-footer-item">
+              <fa-icon class="tweet-footer-item-icon" [icon]="faHeart"></fa-icon><span class="tweet-footer-item-icon">
+                {{tweet.favorite_count}}</span>
+            </a>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ol>
+  <button class="go-up-button" *ngIf="showGoUpButton" (click)="scrollTop()">
+    <fa-icon class="go-up-button-icon" [icon]="faAngleUp"></fa-icon>
+  </button>
 </section>

@@ -43,7 +43,7 @@ export class TweetListComponent {
   }
 
   getMoreTweets() {
-    let array = this.tweets.slice(this.actualTweets, (this.actualTweets + TWEETS_PER_PAGE) - 1);
+    const array = this.tweets.slice(this.actualTweets, (this.actualTweets + TWEETS_PER_PAGE) - 1);
     this.displayedTweets = this.displayedTweets.concat(array);
   }
 

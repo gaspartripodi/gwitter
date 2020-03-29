@@ -12,12 +12,12 @@ import { ISearch } from '../../models/search';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent{
+export class SearchComponent {
 
   tweets: ITweet[] = [];
   searchTweet: ISearch;
   displayedTweets: ITweet[] = [];
-  faSearch= faSearch;
+  faSearch = faSearch;
   faRetweet = faRetweet;
   faHeart = faHeart;
   faAngleUp = faAngleUp;
@@ -29,16 +29,16 @@ export class SearchComponent{
   }
 
   searchedTerm(term: string): void {
-    if(term != ""){
-    this.apiTwitterService.searchTweets(term)
-      .subscribe(searchTweet => {
-        
-        this.actualTweets = 25;
-        for (let i = 0; i < searchTweet.statuses.length ; i++) {
-          this.tweets.push(searchTweet.statuses[i]);
-        }
-        this.displayedTweets = this.tweets.slice(0, TWEETS_PER_PAGE - 1);
-      });
+    if (term != "") {
+      this.apiTwitterService.searchTweets(term)
+        .subscribe(searchTweet => {
+
+          this.actualTweets = 25;
+          for (let i = 0; i < searchTweet.statuses.length; i++) {
+            this.tweets.push(searchTweet.statuses[i]);
+          }
+          this.displayedTweets = this.tweets.slice(0, TWEETS_PER_PAGE - 1);
+        });
     }
   }
 
@@ -50,7 +50,7 @@ export class SearchComponent{
   }
 
   getMoreTweets() {
-    let array = this.tweets.slice(this.actualTweets, (this.actualTweets + TWEETS_PER_PAGE) - 1);
+    const array = this.tweets.slice(this.actualTweets, (this.actualTweets + TWEETS_PER_PAGE) - 1);
     this.displayedTweets = this.displayedTweets.concat(array);
   }
 
