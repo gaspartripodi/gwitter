@@ -29,6 +29,7 @@ export class SearchComponent{
   }
 
   searchedTerm(term: string): void {
+    if(term != ""){
     this.apiTwitterService.searchTweets(term)
       .subscribe(searchTweet => {
         
@@ -38,6 +39,7 @@ export class SearchComponent{
         }
         this.displayedTweets = this.tweets.slice(0, TWEETS_PER_PAGE - 1);
       });
+    }
   }
 
   onScroll() {

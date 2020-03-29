@@ -1,12 +1,6 @@
-<div class="container">
-    <div class="row pt-3">
-        <div class="col-10">
-            <input #term type="text" (keyup.enter)="searchedTerm(term.value)" class="form-control" placeholder="Search...">
-        </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-primary" (click)="searchedTerm(term.value)">Search</button>
-        </div>
-    </div>
+<div class="search-container">
+    <input #term type="text" (keyup.enter)="searchedTerm(term.value)" class="search-input" placeholder="Search...">
+    <button type="button" (click)="searchedTerm(term.value)" class="search-button">Search</button>
 </div>
 <hr>
 <section infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
