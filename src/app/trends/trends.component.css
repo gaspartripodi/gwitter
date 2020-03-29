@@ -1,0 +1,32 @@
+
+
+.trends-container{
+    margin:0 auto;
+    width:90%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.trends{
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size: 15px;
+    
+}
+
+.trends-list{
+    list-style: none;
+    padding:0;
+}
+.tweet-volume{
+    color:grey;
+    margin-left:35px;
+    font-size:12px;
+}
+.order{
+    margin-right:20px;
+    color:grey;
+}
+.trend-name{
+    margin-bottom:8px;
+}

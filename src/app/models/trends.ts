@@ -5,3 +5,6 @@ export interface ITrend {
     query: string;
     tweet_volume: number;
   }
+  export interface ITrends {
+  trends: ITrend[];
+}

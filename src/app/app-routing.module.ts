@@ -4,6 +4,7 @@ import { TrendsComponent } from './trends/trends.component';
 
 const routes: Routes = [
   //{ path: '', component: }
+  { path: 'search', component: TrendsComponent }
 ];
 
 @NgModule({

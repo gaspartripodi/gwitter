@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { ITrend } from '../../models/trends';
+import { ITrends } from '../../models/trends';
 
 @Injectable({ providedIn: 'root' })
 export class ApiTwitterService {
@@ -19,8 +19,8 @@ export class ApiTwitterService {
 
 
 
-  getTrends(): Observable<ITrend[]> {
-    return this.http.get<ITrend[]>(this.url + "/trends?id=23424747");
+  getTrends(): Observable<ITrends[]> {
+    return this.http.get<ITrends[]>(this.url + "/trends?id=23424747");
   }
 
 

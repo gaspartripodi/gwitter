@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { ITweet } from '../models/tweet';
 
 
 @Component({
@@ -14,7 +13,7 @@ import { ITweet } from '../models/tweet';
   styleUrls: ['./trends.component.css']
 })
 export class TrendsComponent implements OnInit {
-  trends: ITrend[]=[];
+  trends: ITrend[] = [];
   
 
   constructor(private apiService: ApiTwitterService) {}
@@ -22,9 +21,13 @@ export class TrendsComponent implements OnInit {
   ngOnInit(): void {
     this.getTrends();
   }
+ 
   getTrends(): void {
     this.apiService.getTrends()
-      .subscribe(trends => { this.trends=trends;
-    });
+      .subscribe(trends => {
+        console.log(trends);
+        this.trends = trends[0].trends.slice(0, 10);
+        
+      });
   }
 }
