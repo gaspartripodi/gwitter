@@ -7,6 +7,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ITweet } from '../../models/tweet';
 import { ISearch } from '../../models/search';
 import { ITweetListConfiguration } from '../../models/tweetListConfiguration';
+import { ITrends } from '../../models/trends';
 
 @Injectable({ providedIn: 'root' })
 export class ApiTwitterService {
@@ -77,6 +78,10 @@ export class ApiTwitterService {
       console.error(error);
       return of(result as T);
     };
+  }
+
+  getTrends(): Observable<ITrends[]> {
+    return this.http.get<ITrends[]>(this.url + "/trends?id=23424747");
   }
 
 }
