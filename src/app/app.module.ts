@@ -13,6 +13,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { SearchComponent } from './components/search/search.component';
+import { TrendsComponent } from './trends/trends.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SearchComponent } from './components/search/search.component';
     TopBarComponent,
     TweetListComponent,
     ConfigurationComponent,
-    SearchComponent
+    SearchComponent,
+    TrendsComponent
   ],
   imports: [
     BrowserModule,
