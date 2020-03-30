@@ -41,7 +41,8 @@ export class ApiTwitterService {
   }
 
   searchTweets(term: string): Observable<ISearch> {
-    return this.http.get<ISearch>(`${this.url}/search/?q=${term}&count=100`);
+    const newTerm: string =  term.replace("#","%23");
+    return this.http.get<ISearch>(`${this.url}/search/?q=${newTerm}&count=100`);
   }
 
   filterTweet(tweet: ITweet) {
