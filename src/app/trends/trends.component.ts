@@ -25,7 +25,6 @@ export class TrendsComponent implements OnInit {
   getTrends(): void {
     this.apiService.getTrends()
       .subscribe(trends => {
-        console.log(trends);
         this.trends = trends[0].trends.slice(0, 10);
         
       });
