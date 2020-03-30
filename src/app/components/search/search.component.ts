@@ -38,6 +38,7 @@ export class SearchComponent {
             this.tweets.push(searchTweet.statuses[i]);
           }
           this.displayedTweets = this.tweets.slice(0, TWEETS_PER_PAGE - 1);
+          this.tweets = [];
         });
     }
   }
