@@ -80,7 +80,7 @@ export class ApiTwitterService {
     }
   }
 
-  getTweet(id: number): Observable<ITweet> {
+  getTweet(id: string): Observable<ITweet> {
     const url = `${this.url}/show?id=${id}`;
     return this.http.get<ITweet>(url);
     console.log(url);
