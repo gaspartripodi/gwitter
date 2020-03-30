@@ -12,6 +12,7 @@ import { ITweetListConfiguration } from '../../models/tweetListConfiguration';
 export class ApiTwitterService {
 
   private url = 'http://localhost:8080';
+  
   tweetListConfiguration: ITweetListConfiguration;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -76,7 +77,13 @@ export class ApiTwitterService {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
-    };
+    }
+  }
+
+  getTweet(id: number): Observable<ITweet> {
+    const url = `${this.url}/show?id=${id}`;
+    return this.http.get<ITweet>(url);
+    console.log(url);
   }
 
 }
