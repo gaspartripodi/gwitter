@@ -13,6 +13,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { SearchComponent } from './components/search/search.component';
+import { TweetDetailsComponent } from './tweet-details/tweet-details.component';
 import { TrendsComponent } from './trends/trends.component';
 
 @NgModule({
@@ -23,6 +24,8 @@ import { TrendsComponent } from './trends/trends.component';
     TweetListComponent,
     ConfigurationComponent,
     SearchComponent,
+    TweetDetails,
+    TweetDetailsComponent,
     TrendsComponent
   ],
   imports: [
