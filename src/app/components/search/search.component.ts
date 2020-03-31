@@ -24,12 +24,14 @@ export class SearchComponent {
   totalPages: number;
   showGoUpButton: boolean;
   faAngleUp = faAngleUp;
+  show: boolean;
 
   constructor(private apiTwitterService: ApiTwitterService, private spinner: NgxSpinnerService) {
     this.showGoUpButton = false;
+    this.show = true;
   }
 
-  searchedTerm(term: string): void {
+  searchedTerm(term: string): boolean {
     if (term != "") {
       this.apiTwitterService.searchTweets(term)
         .subscribe(searchTweet => {
@@ -40,6 +42,7 @@ export class SearchComponent {
           this.getMoreTweets();
         });
     }
+    return false;
   }
 
   resetPagination() {
