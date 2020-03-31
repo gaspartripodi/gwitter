@@ -6,7 +6,7 @@
 <section infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
   <ol class="tweet-list">
     <li class="tweet-card" *ngFor="let tweet of displayedTweets">
-      <a class="tweet-link" routerLink="/detail/{{tweet.id}}">
+      <a class="tweet-link" routerLink="/detail/{{tweet.id_str}}">
         <div class="tweet-content">
           <div class="tweet-header">
             <span class="tweet-name">

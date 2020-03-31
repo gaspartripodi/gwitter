@@ -1,26 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Da+2|Quicksand&display=swap');
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-.config-section {
-  margin: 5px 15px 10px 15px;
-}
-
 .config-header {
-  margin-bottom: 25px;
-  height: 30px;
-  background-color: rgba(255, 255, 255, 0.157);
-  padding: 25px;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.212);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 60px;
+  padding-top: 20px;
 }
 
-.config-header-title {
-  text-align: center;
-  margin: 0 auto;
-  padding: 7px;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 22px;
-  font-weight: bolder;
-  color: #424040;
+.config-section {
+  margin: 35px 15px 10px 15px;
 }
 
 .config-form {

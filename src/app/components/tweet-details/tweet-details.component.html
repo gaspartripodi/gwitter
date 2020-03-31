@@ -1,10 +1,10 @@
-<a href="http://localhost:4200">
-  <div class="go-back">
-    <fa-icon [icon]="faArrowLeft" class="go-back-arrow"></fa-icon> Tweet
-    <hr>
-  </div>
-</a>
-
+<header class="detail-header">
+  <a class="back-button" (click)="goBack()">
+    <fa-icon [icon]="faArrowLeft" class="go-back-arrow"></fa-icon>
+  </a>
+  Tweet
+</header>
+<hr>
 <div class="detail-container">
   <div class="user-details">
     <img class="user-avatar" [src]="tweet.user.profile_image_url" alt="profile image">
@@ -17,7 +17,7 @@
     <p>{{tweet.text}}</p>
   </div>
   <div class="date-details">
-      {{tweet.created_at| date:'shortTime'}} - {{tweet.created_at| date:'d MMM yy'}}
+    {{tweet.created_at| date:'shortTime'}} - {{tweet.created_at| date:'d MMM yy'}}
   </div>
   <hr>
   <div class="retweet">{{tweet.retweet_count}} Retweets &nbsp; {{tweet.favorite_count}} Likes</div>

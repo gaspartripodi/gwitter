@@ -1,145 +1,148 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Chettan+2&display=swap');
+
 body {
-    margin: 0;
-    background: #D3CCE3;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #E9E4F0, #D3CCE3);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 0;
+  background: #D3CCE3;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #E9E4F0, #D3CCE3);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .page-container {
-    position: relative;
-    min-height: 100vh;
+  position: relative;
+  min-height: 100vh;
 }
 
 .content-wrap {
-    padding-bottom: 100px;
+  padding-bottom: 100px;
 }
 
 .section-title {
-    margin-left: 15px;
-    font-family: 'Baloo Chettan 2', cursive;
-    color: grey;
+  margin-left: 15px;
+  font-family: 'Baloo Chettan 2', cursive;
+  color: grey;
 }
 
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(141, 133, 133, 0.75), rgba(0, 0, 0, 0));
+}
 
 /* Tweet list */
 
 .tweet-list {
-    list-style: none;
-    margin: 8px 4px 0;
-    padding: 0;
-    margin: 25px 150px 25px 150px;
-    font-family: Arial, Helvetica, sans-serif;
+  list-style: none;
+  margin: 8px 4px 0;
+  padding: 0;
+  margin: 25px 150px 25px 150px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .tweet-card {
-    background-color: #fff;
-    border-bottom: 1px solid #e6ecf0;
-    min-height: 52px;
-    padding: 9px 12px;
+  background-color: #fff;
+  border-bottom: 1px solid #e6ecf0;
+  min-height: 52px;
+  padding: 9px 12px;
 }
 
 .tweet-link {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .tweet-card:hover {
-    background-color: rgba(255, 255, 255, 0.746);
+  background-color: rgba(255, 255, 255, 0.746);
 }
 
 .tweet-content {
-    margin-left: 58px;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: normal;
+  margin-left: 58px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: normal;
 }
 
-.tweet-username,
-.tweet-date {
-    color: grey;
+.tweet-username, .tweet-date {
+  color: grey;
 }
 
 .tweet-verified {
-    margin-left: 5px;
-    height: 15px;
-    width: 15px;
-    vertical-align: sub;
+  margin-left: 5px;
+  height: 15px;
+  width: 15px;
+  vertical-align: sub;
 }
 
 .tweet-card-avatar {
-    border-radius: 50%;
-    height: 48px;
-    width: 48px;
-    float: left;
-    margin-top: 3px;
-    margin-left: -58px;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  float: left;
+  margin-top: 3px;
+  margin-left: -58px;
 }
 
 .tweet-footer-item {
-    width: 200px;
-    margin-right: 10px;
+  width: 200px;
+  margin-right: 10px;
 }
 
-.tweet-footer-item-icon,
-.tweet-footer-item-span {
-    color: #657786;
-    font-weight: lighter;
-    font-size: 16px;
+.tweet-footer-item-icon, .tweet-footer-item-span {
+  color: #657786;
+  font-weight: lighter;
+  font-size: 16px;
 }
 
 .tweet-footer-item-span {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 @media all and (max-width: 699px) {
-    .tweet-list {
-        margin: 25px 30px 25px 30px;
-    }
+  .tweet-list {
+    margin: 25px 30px 25px 30px;
+  }
 }
 
 @media all and (max-width: 699px) and (min-width: 520px) {
-    .tweet-list {
-        margin: 25px 80px 25px 80px;
-    }
+  .tweet-list {
+    margin: 25px 80px 25px 80px;
+  }
 }
 
 @media all and (max-width: 1000px) and (min-width: 700px) {
-    .tweet-list {
-        margin: 25px 110px 25px 110px;
-    }
+  .tweet-list {
+    margin: 25px 110px 25px 110px;
+  }
 }
-
 
 /* Pagination */
 
 .go-up-button {
-    position: fixed;
-    bottom: 110px;
-    right: 10px;
-    visibility: visible;
-    background: rgba(0, 0, 0, 0.7);
-    width: 50px;
-    height: 50px;
-    display: block;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+  position: fixed;
+  bottom: 110px;
+  right: 10px;
+  visibility: visible;
+  background: rgba(0, 0, 0, 0.7);
+  width: 50px;
+  height: 50px;
+  display: block;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  border-radius: 35px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .go-up-button::-moz-focus-inner {
-    border: 0;
+  border: 0;
 }
 
 .go-up-button-icon {
-    color: white;
-    font-size: 20px;
+  color: white;
+  font-size: 20px;
 }

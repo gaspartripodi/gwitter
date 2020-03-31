@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -9,11 +8,13 @@ import { ISearch } from '../../models/search';
 import { ITweetListConfiguration } from '../../models/tweetListConfiguration';
 import { ITrends } from '../../models/trends';
 
+import { TWITTER_API_URL, WOEID_ARGENTINA } from '../../constants/constants';
+
 @Injectable({ providedIn: 'root' })
 export class ApiTwitterService {
 
-  private url = 'http://localhost:8080';
-  
+  private url = TWITTER_API_URL;
+
   tweetListConfiguration: ITweetListConfiguration;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -43,8 +44,11 @@ export class ApiTwitterService {
   }
 
   searchTweets(term: string): Observable<ISearch> {
-    const newTerm: string =  term.replace("#","%23");
-    return this.http.get<ISearch>(`${this.url}/search/?q=${newTerm}&count=100`);
+    const newTerm: string = term.replace("#", "%23");
+    return this.http.get<ISearch>(`${this.url}/search/?q=${newTerm}&count=100`)
+      .pipe(
+        catchError(this.handleError<ISearch>('searchTweets'))
+      );
   }
 
   filterTweet(tweet: ITweet) {
@@ -75,21 +79,26 @@ export class ApiTwitterService {
     return this.tweetListConfiguration;
   }
 
+  getTweet(id: string): Observable<ITweet> {
+    const url = `${this.url}/show?id=${id}`;
+    return this.http.get<ITweet>(url)
+      .pipe(
+        catchError(this.handleError<ITweet>(`getTweet id=${id}`))
+      );
+  }
+
+  getTrends(): Observable<ITrends[]> {
+    return this.http.get<ITrends[]>(this.url + "/trends?id=" + WOEID_ARGENTINA)
+      .pipe(
+        catchError(this.handleError<ITrends[]>('getTrends', []))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
     }
-  }
-
-  getTweet(id: string): Observable<ITweet> {
-    const url = `${this.url}/show?id=${id}`;
-    return this.http.get<ITweet>(url);
-    console.log(url);
-  }
-
-  getTrends(): Observable<ITrends[]> {
-    return this.http.get<ITrends[]>(this.url + "/trends?id=23424747");
   }
 
 }
