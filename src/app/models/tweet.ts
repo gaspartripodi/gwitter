@@ -1,10 +1,12 @@
 export interface ITweet {
   created_at: Date;
-  id: boolean;
+  id: number;
+  id_str: string;
   text: string;
   truncated: string;
   entities: {
-    urls: []
+    urls: [];
+    media: [];
   }
   user: {
     name: string;

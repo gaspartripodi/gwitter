@@ -44,8 +44,7 @@ export class ApiTwitterService {
   }
 
   searchTweets(term: string): Observable<ISearch> {
-    const newTerm: string = term.replace("#", "%23");
-    return this.http.get<ISearch>(`${this.url}/search/?q=${newTerm}&count=100`)
+    return this.http.get<ISearch>(`${this.url}/search/?q=${encodeURIComponent(term)}&count=100`)
       .pipe(
         catchError(this.handleError<ISearch>('searchTweets'))
       );

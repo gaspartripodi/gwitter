@@ -6,10 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MomentModule } from 'ngx-moment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { TweetComponent } from './components/tweet/tweet.component';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { SearchComponent } from './components/search/search.component';
@@ -25,7 +27,8 @@ import { TrendsComponent } from './components/trends/trends.component';
     ConfigurationComponent,
     SearchComponent,
     TweetDetailsComponent,
-    TrendsComponent
+    TrendsComponent,
+    TweetComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { TrendsComponent } from './components/trends/trends.component';
     HttpClientModule,
     MomentModule,
     FontAwesomeModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

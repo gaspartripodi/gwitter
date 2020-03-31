@@ -1,10 +1,11 @@
 import { Component, HostListener } from '@angular/core';
-import { faRetweet, faHeart, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { NgxSpinnerService } from "ngx-spinner";
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import { ITweet } from '../../models/tweet';
 import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service';
 
-import { TOTAL_TWEETS, TWEETS_PER_PAGE, SHOW_SCROLL_HEIGHT, HIDE_SCROLL_HEIGHT } from '../../constants/constants';
+import { TWEET_LIMIT_PAGE, SHOW_SCROLL_HEIGHT, HIDE_SCROLL_HEIGHT } from '../../constants/constants';
 
 @Component({
   selector: 'app-tweet-list',
@@ -15,13 +16,14 @@ export class TweetListComponent {
 
   tweets: ITweet[] = [];
   displayedTweets: ITweet[] = [];
-  faRetweet = faRetweet;
-  faHeart = faHeart;
-  faAngleUp = faAngleUp;
-  private actualTweets: number;
+  page: number = 1;
+  offset: number;
+  totalRows: number;
+  totalPages: number;
   showGoUpButton: boolean;
+  faAngleUp = faAngleUp;
 
-  constructor(private apiTwitterService: ApiTwitterService) {
+  constructor(private apiTwitterService: ApiTwitterService, private spinner: NgxSpinnerService) {
     this.getTimeline();
     this.showGoUpButton = false;
   }
@@ -29,22 +31,27 @@ export class TweetListComponent {
   getTimeline(): void {
     this.apiTwitterService.getTweets()
       .subscribe(tweets => {
-        this.actualTweets = 25;
         this.tweets = tweets;
-        this.displayedTweets = tweets.slice(0, TWEETS_PER_PAGE - 1);
+        this.totalRows = this.tweets.length;
+        this.totalPages = Math.ceil(this.totalRows / TWEET_LIMIT_PAGE);
+        this.getMoreTweets();
       });
   }
 
-  onScroll() {
-    if (this.actualTweets < TOTAL_TWEETS) {
-      this.getMoreTweets();
-      this.actualTweets = this.actualTweets + TWEETS_PER_PAGE;
-    }
+  getMoreTweets() {
+    this.offset = (this.page - 1) * TWEET_LIMIT_PAGE;
+    this.displayedTweets = this.displayedTweets.concat(this.tweets.slice(this.offset, this.offset + TWEET_LIMIT_PAGE));
+    this.page += 1;
   }
 
-  getMoreTweets() {
-    const array = this.tweets.slice(this.actualTweets, (this.actualTweets + TWEETS_PER_PAGE) - 1);
-    this.displayedTweets = this.displayedTweets.concat(array);
+  onScroll() {
+    if (this.page <= this.totalPages) {
+      this.spinner.show();
+      setTimeout(() => {
+        this.getMoreTweets();
+        this.spinner.hide();
+      }, 500);
+    }
   }
 
   scrollTop() {
