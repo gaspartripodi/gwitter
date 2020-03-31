@@ -14,6 +14,7 @@ import { TweetListComponent } from './components/tweet-list/tweet-list.component
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { SearchComponent } from './components/search/search.component';
 import { TweetDetailsComponent } from './tweet-details/tweet-details.component';
+import { TrendsComponent } from './trends/trends.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { TweetDetailsComponent } from './tweet-details/tweet-details.component';
     TweetListComponent,
     ConfigurationComponent,
     SearchComponent,
-    TweetDetailsComponent
+    TweetDetails,
+    TweetDetailsComponent,
+    TrendsComponent
   ],
   imports: [
     BrowserModule,

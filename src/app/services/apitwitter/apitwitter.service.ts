@@ -7,6 +7,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ITweet } from '../../models/tweet';
 import { ISearch } from '../../models/search';
 import { ITweetListConfiguration } from '../../models/tweetListConfiguration';
+import { ITrends } from '../../models/trends';
 
 @Injectable({ providedIn: 'root' })
 export class ApiTwitterService {
@@ -42,7 +43,8 @@ export class ApiTwitterService {
   }
 
   searchTweets(term: string): Observable<ISearch> {
-    return this.http.get<ISearch>(`${this.url}/search/?q=${term}&count=100`);
+    const newTerm: string =  term.replace("#","%23");
+    return this.http.get<ISearch>(`${this.url}/search/?q=${newTerm}&count=100`);
   }
 
   filterTweet(tweet: ITweet) {
@@ -84,6 +86,10 @@ export class ApiTwitterService {
     const url = `${this.url}/show?id=${id}`;
     return this.http.get<ITweet>(url);
     console.log(url);
+  }
+
+  getTrends(): Observable<ITrends[]> {
+    return this.http.get<ITrends[]>(this.url + "/trends?id=23424747");
   }
 
 }
