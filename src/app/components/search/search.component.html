@@ -13,5 +13,5 @@
     <button class="go-up-button" *ngIf="showGoUpButton" (click)="scrollTop()">
     <fa-icon class="go-up-button-icon" [icon]="faAngleUp"></fa-icon>
   </button>
-    <app-trends *ngIf="show"></app-trends>
+    <app-trends (trendTerm)="searchedTerm($event)" type="button" (click)="show = false" *ngIf="show"></app-trends>
 </section>
