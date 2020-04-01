@@ -6,8 +6,10 @@ export interface ITweet {
   truncated: string;
   entities: {
     urls: [];
-    media: [];
-  }
+    media:{
+      media_url:string;
+    };
+  };
   user: {
     name: string;
     screen_name: string;

@@ -73,8 +73,10 @@
 }
 
 .icons {
-  margin-top: 50px;
+  margin: 50px 0;
+  
   text-align: left;
+
 }
 
 @media all and (max-width: 699px) {
@@ -107,4 +109,7 @@
   border-radius: 50%;
   padding: 15px;
   color: white;
+}
+.tweet-media-img{
+  max-width:90%;
 }

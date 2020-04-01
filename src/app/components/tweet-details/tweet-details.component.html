@@ -16,6 +16,9 @@
   <div class="tweet-body">
     <p>{{tweet.text}}</p>
   </div>
+  <div *ngIf="tweet.entities.media">
+    <img class="tweet-media-img" src="{{tweet.entities.media[0].media_url}}">
+  </div>
   <div class="date-details">
     {{tweet.created_at| date:'shortTime'}} - {{tweet.created_at| date:'d MMM yy'}}
   </div>
