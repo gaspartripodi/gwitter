@@ -73,14 +73,6 @@ export class ApiTwitterService {
     return condition;
   }
 
-  searchTweets(term: string): Observable<ISearch> {
-    return this.http.get<ISearch>(`${this.url}/search/?q=${encodeURIComponent(term)}&count=100`)
-      .pipe(
-        catchError(this.handleError<ISearch>('searchTweets'))
-      );
-  }
-
-  /*
   searchTweets(term: string, count: number, maxId: number = null): Observable<ISearch> {
     return this.http.get<ISearch>(`${this.url}/search/?q=${encodeURIComponent(term)}&count=${count}${maxId ? "&max_id=" + maxId : ""}`)
       .pipe(
@@ -93,7 +85,6 @@ export class ApiTwitterService {
         catchError(this.handleError<ISearch>('searchTweets'))
       );
   }
-  */
 
   filterTweet(tweet: ITweet) {
     let condition = true;
