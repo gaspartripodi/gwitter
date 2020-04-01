@@ -1,11 +1,9 @@
-<section infiniteScroll [infiniteScrollDistance]="0.5" (scrolled)="onScroll()">
+<ngx-spinner></ngx-spinner>
+<section infiniteScroll [infiniteScrollDistance]="0.5" (scrolled)="getTweets()">
   <ol class="tweet-list">
-    <li *ngFor="let tweet of displayedTweets">
+    <li *ngFor="let tweet of tweets">
       <app-tweet [tweet]="tweet"></app-tweet>
     </li>
   </ol>
-  <ngx-spinner></ngx-spinner>
-  <button class="go-up-button" *ngIf="showGoUpButton" (click)="scrollTop()">
-    <fa-icon class="go-up-button-icon" [icon]="faAngleUp"></fa-icon>
-  </button>
+  <app-scroll-button></app-scroll-button>
 </section>

@@ -1,11 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import { ITweet } from '../../models/tweet';
 import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service';
 
 import { TWEET_LIMIT_PAGE, TWEET_CALLS_LIMIT } from '../../constants/constants';
+
 import { ISearch } from '../../models/search';
 
 @Component({
@@ -16,37 +16,36 @@ import { ISearch } from '../../models/search';
 export class SearchComponent {
 
   tweets: ITweet[] = [];
+  term: string;
   searchTweet: ISearch;
-  show: boolean;
   maxId: number;
-  tweetCalls: number =0;
-
+  tweetCalls: number = 0;
+  showGoUpButton: boolean;
 
   constructor(private apiTwitterService: ApiTwitterService, private spinner: NgxSpinnerService) {
-    this.show = true;
+    this.showGoUpButton = false;
   }
 
-  searchedTerm(term: string): boolean {
+  searchedTerm(term: string): void {
     if (term != "") {
-      (<HTMLInputElement>document.getElementById("search-input")).value = term;
-      this.apiTwitterService.searchTweets(term, this.tweetCalls, TWEET_LIMIT_PAGE)
+      this.term = term;
+      this.apiTwitterService.searchTweets(term, TWEET_LIMIT_PAGE)
         .subscribe(searchTweet => {
           this.resetPagination();
           searchTweet.statuses.forEach((e) => this.tweets.push(e));
-          this.getMoreTweets(term);
+          this.getTweets();
         });
     }
-    return false;
   }
 
   resetPagination() {
     this.tweets = [];
     this.tweetCalls = 0;
   }
-  
-  getMoreTweets(term: string) {
+
+  getTweets() {
     if (this.tweetCalls == 0) {
-      this.apiTwitterService.searchTweets(term, TWEET_LIMIT_PAGE)
+      this.apiTwitterService.searchTweets(this.term, TWEET_LIMIT_PAGE)
         .subscribe(search => {
           const tweets = search.statuses;
           this.tweets = tweets;
@@ -54,7 +53,7 @@ export class SearchComponent {
         });
     }
     else if (this.tweetCalls < TWEET_CALLS_LIMIT) {
-      this.apiTwitterService.searchTweets(term, TWEET_LIMIT_PAGE, this.maxId)
+      this.apiTwitterService.searchTweets(this.term, TWEET_LIMIT_PAGE, this.maxId)
         .subscribe(search => {
           this.spinner.show();
           const tweets = search.statuses;
@@ -68,4 +67,5 @@ export class SearchComponent {
     }
     this.tweetCalls += 1;
   }
+
 }

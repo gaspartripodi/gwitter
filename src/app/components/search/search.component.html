@@ -1,17 +1,15 @@
 <div class="search-container">
-    <input #term type="text" (keyup.enter)="show = false" (keyup.enter)="searchedTerm(term.value)" class="search-input" placeholder="Search...">
+    <input #term id="search-input" type="text" (keyup.enter)="show = false" (keyup.enter)="searchedTerm(term.value)" class="search-input" placeholder="Search...">
     <button type="button" (click)="show = false" (click)="searchedTerm(term.value)" class="search-button">Search</button>
 </div>
 <hr>
-<section infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+<section infiniteScroll [infiniteScrollDistance]="0.5" (scrolled)="getMoreTweets(term.value)">
     <ol class="tweet-list">
-        <li *ngFor="let tweet of displayedTweets">
+        <li *ngFor="let tweet of tweets">
             <app-tweet [tweet]="tweet"></app-tweet>
         </li>
     </ol>
     <ngx-spinner></ngx-spinner>
-    <button class="go-up-button" *ngIf="showGoUpButton" (click)="scrollTop()">
-    <fa-icon class="go-up-button-icon" [icon]="faAngleUp"></fa-icon>
-  </button>
+    <app-scroll-button></app-scroll-button>
     <app-trends (trendTerm)="searchedTerm($event)" type="button" (click)="show = false" *ngIf="show"></app-trends>
 </section>

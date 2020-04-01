@@ -8,7 +8,7 @@ import { ISearch } from '../../models/search';
 import { ITweetListConfiguration } from '../../models/tweetListConfiguration';
 import { ITrends } from '../../models/trends';
 
-import { TWITTER_API_URL, WOEID_ARGENTINA } from '../../constants/constants';
+import { TWITTER_API_URL, WOEID_ARGENTINA, EXPIRATION_LS } from '../../constants/constants';
 
 @Injectable({ providedIn: 'root' })
 export class ApiTwitterService {
@@ -30,43 +30,80 @@ export class ApiTwitterService {
     }
   }
 
-  getTweets(): Observable<ITweet[]> {
-    return this.http.get<ITweet[]>(this.url + "/timeline?count=100")
-      .pipe(
-        map((data) => {
-          data.forEach(element => {
-            element.created_at = new Date(element.created_at);
-          });
-          return this.filterTweets(data);
-        }),
-        catchError(this.handleError<ITweet[]>('getTweets', []))
-      );
+  getTimelineTweets(tweetCall: number, count: number, maxId: number = null): Observable<ITweet[]> {
+    const storagedData: ITweet[] = JSON.parse(localStorage.getItem(tweetCall.toString()));
+    if (storagedData && !this.ifExpired(tweetCall)) {
+      return of(this.filterTweets(storagedData));
+    }
+    else {
+      this.saveDateFirstCall(tweetCall);
+      return this.http.get<ITweet[]>(this.url + `/timeline?count=${count}${maxId ? "&max_id=" + maxId : ""}`)
+        .pipe(
+          map((data) => {
+            data.forEach(element => {
+              element.created_at = new Date(element.created_at);
+            });
+            localStorage.setItem(tweetCall.toString(), JSON.stringify(data));
+            return this.filterTweets(data);
+          }),
+          catchError(this.handleError<ITweet[]>('getTimelineTweets', []))
+        );
+    }
   }
 
-  searchTweets(term: string): Observable<ISearch> {
-    return this.http.get<ISearch>(`${this.url}/search/?q=${encodeURIComponent(term)}&count=100`)
+  saveDateFirstCall(tweetCall) {
+    if (tweetCall === 0) {
+      localStorage.clear();
+      localStorage.setItem("date", JSON.stringify({ date: new Date() }));
+    }
+  }
+
+  ifExpired(tweetCall) {
+    let condition = false;
+    if (tweetCall === 0) {
+      const objectLS = JSON.parse(localStorage.getItem("date"));
+      if (objectLS) {
+        const actualDate = new Date();
+        const dateLS = new Date(objectLS.date);
+        const difference = actualDate.getTime() - dateLS.getTime();
+        if (difference > EXPIRATION_LS)
+          condition = true;
+      }
+    }
+    return condition;
+  }
+
+  searchTweets(term: string, count: number, maxId: number = null): Observable<ISearch> {
+    return this.http.get<ISearch>(`${this.url}/search/?q=${encodeURIComponent(term)}&count=${count}${maxId ? "&max_id=" + maxId : ""}`)
       .pipe(
+        map((data) => {
+          data.statuses.forEach(element => {
+            element.created_at = new Date(element.created_at);
+          });
+          return data;
+        }),
         catchError(this.handleError<ISearch>('searchTweets'))
       );
   }
 
   filterTweet(tweet: ITweet) {
+    let condition = true;
     if (this.tweetListConfiguration.hideNotVerified && !tweet.user.verified) {
-      return false;
+      condition = false;
     }
     if (this.tweetListConfiguration.hideNotFollowed && !tweet.user.following) {
-      return false;
+      condition = false;
     }
     if (this.tweetListConfiguration.hideDefaultProfile && tweet.user.default_profile) {
-      return false;
+      condition = false;;
     }
     if (this.tweetListConfiguration.hideWithLink && tweet.entities.urls.length != 0) {
-      return false;
+      condition = false;
     }
     if (this.tweetListConfiguration.hideTextTruncated && tweet.truncated) {
-      return false;
+      condition = false;
     }
-    return true;
+    return condition;
   }
 
   filterTweets(data: ITweet[]) {
