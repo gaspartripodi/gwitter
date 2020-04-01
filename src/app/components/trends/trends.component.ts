@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ITrend } from '../../models/trends';
 import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service';
 

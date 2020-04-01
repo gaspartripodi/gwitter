@@ -1,6 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import { ITweet } from '../../models/tweet';
 import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service';

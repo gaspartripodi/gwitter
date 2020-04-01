@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ITweet } from '../../models/tweet';
-import { faRetweet, faHeart, faAngleUp, faArrowLeft, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faRetweet, faHeart, faArrowLeft, faComment } from '@fortawesome/free-solid-svg-icons';
 import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service';
 
 @Component({
