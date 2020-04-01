@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ITrend } from '../../models/trends';
 import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service';
 
@@ -10,11 +10,18 @@ import { ApiTwitterService } from '../../services/apitwitter/apitwitter.service'
 export class TrendsComponent implements OnInit {
   
   trends: ITrend[] = [];
+  @Output() trendTerm: EventEmitter<string> ;
 
-  constructor(private apiService: ApiTwitterService) { }
+  constructor(private apiService: ApiTwitterService) {
+    this.trendTerm = new EventEmitter;
+   }
 
   ngOnInit(): void {
     this.getTrends();
+  }
+
+  sendTrend(index:number):void{
+    this.trendTerm.emit(this.trends[index].name);
   }
 
   getTrends(): void {
