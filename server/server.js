@@ -41,7 +41,6 @@ app.get('/timeline', function (req, res) {
 
 //http://localhost:8080/myplace?lat=-38.7116780&long=-62.2680780
 app.get('/myplace', function(req, res) {
-  console.log(req);
   T.get('/trends/closest', req.query, function(err, data, response) {
       return res.json(data);
   })
