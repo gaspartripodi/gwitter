@@ -7,6 +7,7 @@ import { MomentModule } from 'ngx-moment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,6 +18,7 @@ import { ConfigurationComponent } from './components/configuration/configuration
 import { SearchComponent } from './components/search/search.component';
 import { TweetDetailsComponent } from './components/tweet-details/tweet-details.component';
 import { TrendsComponent } from './components/trends/trends.component';
+import { ScrollButtonComponent } from './components/scroll-button/scroll-button.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { TrendsComponent } from './components/trends/trends.component';
     SearchComponent,
     TweetDetailsComponent,
     TrendsComponent,
-    TweetComponent
+    TweetComponent,
+    ScrollButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { TrendsComponent } from './components/trends/trends.component';
     HttpClientModule,
     MomentModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
     InfiniteScrollModule,
     NgxSpinnerModule
   ],
