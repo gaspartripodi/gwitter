@@ -32,7 +32,8 @@
 }
 
 .nav-list-item-icon {
-  font-size: 35px;
+  margin-top: 12px;
+  margin-bottom: 0;
 }
 
 .nav-list-button {

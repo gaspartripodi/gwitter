@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MomentModule } from 'ngx-moment';
+import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -39,6 +40,7 @@ import { ScrollButtonComponent } from './components/scroll-button/scroll-button.
     AppRoutingModule,
     HttpClientModule,
     MomentModule,
+    MatIconModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
     InfiniteScrollModule,
