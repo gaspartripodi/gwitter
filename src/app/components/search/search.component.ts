@@ -28,6 +28,7 @@ export class SearchComponent {
   searchedTerm(term: string): boolean {
     if (term != "") {
       (<HTMLInputElement>document.getElementById("search-input")).value = term;
+      this.show = false;
       this.apiTwitterService.searchTweets(term, this.tweetCalls, TWEET_LIMIT_PAGE)
         .subscribe(searchTweet => {
           this.resetPagination();

@@ -1,6 +1,6 @@
 <div class="search-container">
-    <input #term id="search-input" type="text" (keyup.enter)="show = false" (keyup.enter)="searchedTerm(term.value)" class="search-input" placeholder="Search...">
-    <button type="button" (click)="show = false" (click)="searchedTerm(term.value)" class="search-button">Search</button>
+    <input #term id="search-input" type="text" (keyup.enter)="searchedTerm(term.value)" class="search-input" placeholder="Search...">
+    <button type="button" (click)="searchedTerm(term.value)" class="search-button">Search</button>
 </div>
 <hr>
 <section infiniteScroll [infiniteScrollDistance]="0.5" (scrolled)="getMoreTweets(term.value)">
