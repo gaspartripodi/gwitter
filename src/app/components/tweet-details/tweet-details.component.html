@@ -5,7 +5,7 @@
   Tweet
 </header>
 <hr>
-<div class="detail-container">
+<div *ngIf="tweet" class="detail-container">
   <div class="user-details">
     <img class="user-avatar" [src]="tweet.user.profile_image_url" alt="profile image">
     <div class="name">
